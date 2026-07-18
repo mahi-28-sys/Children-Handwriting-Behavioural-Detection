@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Handwriting Analysis Results</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    padding: 50px 16px;
+    color: #222;
+  }
+
+  h1 {
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    font-size: 2.5rem;
+  }
+
+  .card {
+    margin-top: 35px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    transform: scale(1.02);
+  }
+
+  .card-body {
+    padding: 45px 40px;
+  }
+
+  .card-title {
+    color: #007bff;
+    font-weight: 700;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #007bff30;
+    padding-bottom: 8px;
+  }
+
+  .list-group-item {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 1.3rem;
+    padding: 14px 0;
+  }
+
+  .badge-level {
+    font-size: 1.05rem;
+    padding: 10px 20px;
+    border-radius: 14px;
+    font-weight: 600;
+  }
+
+  .bg-success { background-color: #28a745 !important; }
+  .bg-warning { background-color: #ffc107 !important; }
+  .bg-danger { background-color: #dc3545 !important; }
+
+  .btn-secondary {
+    background-color: #007bff;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: #0056b3;
+    transform: scale(1.08);
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .note {
+    color: #333;
+    font-style: italic;
+    background: #fffae6;
+    border-left: 6px solid #ffcc00;
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 1rem;
+  }
+
+  .container {
+    max-width: 1000px;
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1 class="text-center mb-4">🎨 Children’s Handwriting Analysis Results</h1>
+
+  {% if predictions %}
+  <div class="card shadow-lg">
+    <div class="card-body">
+      <h3 class="card-title mb-4">✨ Predictions</h3>
+      <ul class="list-group list-group-flush">
+        {% for trait, value in predictions.items() %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <strong>{{ trait }}</strong>
+          {% set badge_class = "bg-success" if value=="High" else ("bg-warning text-dark" if value=="Moderate" else "bg-danger") %}
+          <span class="badge badge-level {{ badge_class }}">{{ value }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if advice_paragraph %}
+  <div class="card shadow-lg">
+    <div class="card-body">
+      <h3 class="card-title mb-4">💡 Advice</h3>
+      <p class="mb-0">{{ advice_paragraph }}</p>
+      <div class="note mt-3">📝 Note: Please meet a counselor or guide for further advice.</div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="text-center mt-5">
+    <a href="/" class="btn btn-secondary">⬅ Upload Another Sample</a>
+  </div>
+</div>
+</body>
+</html>

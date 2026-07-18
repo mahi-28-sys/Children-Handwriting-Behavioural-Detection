@@ -1,0 +1,17 @@
+{
+  "cluster_id_to_level_index": {
+    "1": 0,
+    "2": 1,
+    "0": 2
+  },
+  "level_index_to_label": {
+    "0": "Low",
+    "1": "Moderate",
+    "2": "High"
+  },
+  "cluster_means_low_to_high": [
+    0.24647601704176628,
+    0.25717757731088653,
+    0.3794402263293128
+  ]
+}
