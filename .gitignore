@@ -17,6 +17,5 @@ src/trait_labels.csv
 .vscode/
 .idea/
 
-# macOS
 .DS_Store
 Thumbs.db
