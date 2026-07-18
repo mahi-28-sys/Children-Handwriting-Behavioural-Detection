@@ -10,6 +10,8 @@ src/uploads/
 src/dataset/
 src/eval_reports/
 src/cluster_mappings/
+src/features.csv
+src/trait_labels.csv
 
 # IDE files
 .vscode/
